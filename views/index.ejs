@@ -13,6 +13,11 @@
 		<!-- Favicon -->
 		<link href="dist/img/favicon.png" type="image/png" rel="icon">
 		<script src="socket.io/socket.io.js"></script>
+		<style type="text/css">
+			#message-box{
+				overflow: auto;
+			}
+		</style>
 	</head>
 	<body>
 		<main>
@@ -886,7 +891,7 @@
 													<i class="material-icons online">fiber_manual_record</i>
 												</div>
 												<div class="data">
-													<h5><a href="#">Keith Morris</a></h5>
+													<h5><a href="#"><% userName %></a></h5>
 													<span>Active now</span>
 												</div>
 												<button class="btn connect d-md-block d-none" name="1"><i class="material-icons md-30">phone_in_talk</i></button>
@@ -909,7 +914,7 @@
 								</div>
 								<div class="content" id="content">
 									<div class="container">
-										<div class="col-md-12">
+										<div id="message-box" class="col-md-12">
 											<div class="date">
 												<hr>
 												<span>Yesterday</span>
@@ -1005,7 +1010,8 @@
 													<span>11:07 PM</span>
 												</div>
 											</div>
-											<div class="message me">
+											
+											<div class="message">
 												<div class="text-main">
 													<div class="text-group me">
 														<div class="text me">
@@ -1029,6 +1035,17 @@
 													</div>
 												</div>
 											</div>
+											<div class="message">
+												<img class="avatar-md" src="dist/img/avatars/avatar-female-5.jpg" data-toggle="tooltip" data-placement="top" title="Keith" alt="avatar">
+												<div class="text-main">
+													<div class="text-group">
+														<div class="text">
+															<p>Great start guys, I've added some notes to the task. We may need to make some adjustments to the last couple of items - but no biggie!</p>
+														</div>
+													</div>
+													<span>11:07 PM</span>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -1036,9 +1053,9 @@
 									<div class="col-md-12">
 										<div class="bottom">
 											<form class="position-relative w-100">
-												<textarea id="abs" class="form-control" placeholder="Start typing for reply..." rows="1"></textarea>
-												<button class="btn emoticons"><i class="material-icons">insert_emoticon</i></button>
-												<button class="btn send"><i class="material-icons">send</i></button>
+												<textarea id="message-content" class="form-control content" placeholder="Start typing for reply..." rows="1"></textarea>
+												<button type="button" class="btn emoticons"><i class="material-icons">insert_emoticon</i></button>
+												<button type="button" class="btn send"><i class="material-icons">send</i></button>
 											</form>
 											<label>
 												<input type="file">
@@ -1240,7 +1257,7 @@
 		<!-- Bootstrap/Swipe core JavaScript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="dist/js/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="dist/js/jquery-3.5.0.min.js"></script>
 		<script>window.jQuery || document.write('<script src="dist/js/vendor/jquery-slim.min.js"><\/script>')</script>
 		<script src="dist/js/vendor/popper.min.js"></script>
 		<script src="dist/js/swipe.min.js"></script>
@@ -1248,12 +1265,44 @@
 		<script>
 			function scrollToBottom(el) { el.scrollTop = el.scrollHeight; }
 			scrollToBottom(document.getElementById('content'));
-			$(document).ready(()=>{
+			jQuery(document).ready(($)=>{
 				var socket = io("http://localhost:8080");
-				$(".btn.send").click(()=>{
-					socket.emit("Client-send", "Hello");
+				//listen from server
+				socket.on("data-from-server", (data)=>{
+					var ele = `<div class="message">
+												<img class="avatar-md" src="dist/img/avatars/avatar-female-5.jpg" data-toggle="tooltip" data-placement="top" title="Keith" alt="avatar">
+												<div class="text-main">
+													<div class="text-group">
+														<div class="text">
+															<p>${data}</p>
+														</div>
+													</div>
+													<span>09:46 AM</span>
+												</div>
+											</div>`;
+					$(".content .container .col-md-12").append(ele);
+					$('.content').animate({ scrollTop:  $("#message-box")[0].clientHeight});
 				})
-			})
+
+				var content = $("#message-content");
+
+				//send data to server
+				$(".btn.send").click(()=>{
+					var clientTime = new Date().getUTCHours() + ":" + new Date().getUTCMinutes();
+					var meMessBox = `<div class="message me">
+												<div class="text-main">
+													<div class="text-group me">
+														<div class="text me">
+															<p>${content[0].value}</p>
+														</div>
+													</div>
+													<span>${clientTime}</span>
+												</div>
+											</div>`;
+					$(".content .container .col-md-12").append(meMessBox);
+					socket.emit("message-content", content[0].value);
+				})
+			})	
 		</script>
 	</body>
 
