@@ -3,15 +3,15 @@
 
 <head>
 		<meta charset="utf-8">
-		<title>Sign In – Swipe</title>
+		<title>Đăng nhập – Swipe</title>
 		<meta name="description" content="#">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<!-- Bootstrap core CSS -->
-		<link href="dist/css/lib/bootstrap.min.css" type="text/css" rel="stylesheet">
+		<link href="/dist/css/lib/bootstrap.min.css" type="text/css" rel="stylesheet">
 		<!-- Swipe core CSS -->
-		<link href="dist/css/swipe.min.css" type="text/css" rel="stylesheet">
+		<link href="/dist/css/swipe.min.css" type="text/css" rel="stylesheet">
 		<!-- Favicon -->
-		<link href="dist/img/favicon.png" type="image/png" rel="icon">
+		<link href="/dist/img/favicon.png" type="image/png" rel="icon">
 	</head>
 	<body class="start">
 		<main>
@@ -22,7 +22,7 @@
 						<div class="container">
 							<div class="col-md-12">
 								<div class="content">
-									<h1>Sign in to Swipe</h1>
+									<h1>Đăng nhập vào Swipe</h1>
 									<div class="third-party">
 										<button class="btn item bg-blue">
 											<i class="material-icons">pages</i>
@@ -34,24 +34,24 @@
 											<i class="material-icons">whatshot</i>
 										</button>
 									</div>
-									<p>or use your email account:</p>
+									<p>hoặc đăng nhập với:</p>
 									<form method="POST">
 										<div class="form-group">
-											<input type="username" name="username" id="inputUsername" class="form-control" placeholder="Username" required>
+											<input type="username" name="username" id="inputUsername" class="form-control" placeholder="Tên tài khoản" required>
 											<button class="btn icon"><i class="material-icons">mail_outline</i></button>
 										</div>
 										<div class="form-group">
-											<input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+											<input type="password" name="password" id="inputPassword" class="form-control" placeholder="Mật khẩu" required>
 											<button class="btn icon"><i class="material-icons">lock_outline</i></button>
 										</div>
 										<% if(isError) { %>
 											<div class="alert alert-danger" role="alert">
-												Username or password is incorrect!
+												Vui lòng kiểm tra lại tên tài khoản hoặc mật khẩu!
 											</div>
 										<% } %>
-										<button type="submit" class="btn button" formaction="/user-login">Sign In</button>
+										<button type="submit" class="btn button" formaction="/sign-in">Đăng nhập</button>
 										<div class="callout">
-											<span>Don't have account? <a href="sign-up.html">Create Account</a></span>
+											<span>Chưa có tài khoản? <a href="sign-up.html">Tạo tài khoản mới</a></span>
 										</div>
 									</form>
 								</div>
@@ -65,9 +65,9 @@
 					<div class="container">
 						<div class="col-md-12">
 							<div class="preference">
-								<h2>Hello, Friend!</h2>
-								<p>Enter your personal details and start your journey with Swipe today.</p>
-								<a href="/sign-up" class="btn button">Sign Up</a>
+								<h2>Chào, bạn!</h2>
+								<p>Tạo một tài khoản mới để sử dụng swipe ngay hôm nay.</p>
+								<a href="/users/sign-up" class="btn button">Đăng ký ngay</a>
 							</div>
 						</div>
 					</div>
@@ -78,10 +78,10 @@
 		<!-- Bootstrap core JavaScript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="dist/js/jquery-3.5.0.min.js"></script>
-		<script>window.jQuery || document.write('<script src="public/dist/js/vendor/jquery-slim.min.js"><\/script>')</script>
-		<script src="dist/js/vendor/popper.min.js"></script>
-		<script src="dist/js/bootstrap.min.js"></script>
+		<script src="/dist/js/jquery-3.5.0.min.js"></script>
+		<script>window.jQuery || document.write('<script src="/dist/js/vendor/jquery-slim.min.js"><\/script>')</script>
+		<script src="/dist/js/vendor/popper.min.js"></script>
+		<script src="/dist/js/bootstrap.min.js"></script>
 	</body>
 	<script type="text/javascript" >
 

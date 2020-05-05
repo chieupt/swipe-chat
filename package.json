@@ -4,15 +4,21 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon www/app.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "author": "Chieupt",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^4.0.1",
+    "connect-flash": "^0.1.1",
     "ejs": "^3.1.2",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.9.12",
     "nodemon": "^2.0.3",
+    "passport": "^0.4.1",
+    "path": "^0.12.7",
     "socket.io": "^2.3.0"
   }
 }
