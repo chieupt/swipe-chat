@@ -1,6 +1,8 @@
 const express = require("express")
 const app = express()
-app.use(express.static("public"))
+const mongoose = require("mongoose")
+
+app.use(express.static(__dirname + "/public"))
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 var server = require("http").Server(app)
@@ -39,7 +41,17 @@ io.on("connection", (socket)=>{
 
 //use ejs engine
 app.set("view engine", "ejs");
-app.set("views", "views");
+app.set("views", __dirname + "/views");
 
-app.use('/', require('./routes/index'))
-app.use('/users', require('./routes/users'))
+//route
+app.use('/', require(__dirname + '/routes/index'))
+app.use('/users', require(__dirname + '/routes/users'))
+
+//db config
+const db = require(__dirname + '/config/keys').MongoURI
+//connect to Mongo
+mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
+.then(()=>{
+    console.log('connected');
+})
+.catch(err => console.log(err))

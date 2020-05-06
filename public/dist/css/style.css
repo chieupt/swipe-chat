@@ -94,3 +94,7 @@ body {
       font-size: 112px;
     }
 }
+
+.error{
+  border-color: #eb4d4b !important;
+}

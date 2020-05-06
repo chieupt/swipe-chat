@@ -3,13 +3,14 @@
 
 <head>
 		<meta charset="utf-8">
-		<title>Đăng nhập – Swipe</title>
+		<title>Login – Swipe</title>
 		<meta name="description" content="#">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<!-- Bootstrap core CSS -->
 		<link href="/dist/css/lib/bootstrap.min.css" type="text/css" rel="stylesheet">
 		<!-- Swipe core CSS -->
 		<link href="/dist/css/swipe.min.css" type="text/css" rel="stylesheet">
+		<link href="/dist/css/style.css" type="text/css" rel="stylesheet">
 		<!-- Favicon -->
 		<link href="/dist/img/favicon.png" type="image/png" rel="icon">
 	</head>
@@ -22,7 +23,7 @@
 						<div class="container">
 							<div class="col-md-12">
 								<div class="content">
-									<h1>Đăng nhập vào Swipe</h1>
+									<h1>Sign in to Swipe</h1>
 									<div class="third-party">
 										<button class="btn item bg-blue">
 											<i class="material-icons">pages</i>
@@ -34,24 +35,39 @@
 											<i class="material-icons">whatshot</i>
 										</button>
 									</div>
-									<p>hoặc đăng nhập với:</p>
+									<p>or use your email account:</p>
 									<form method="POST">
 										<div class="form-group">
-											<input type="username" name="username" id="inputUsername" class="form-control" placeholder="Tên tài khoản" required>
+											<input type="text" id="inputUserName" name="userName" 
+											class="form-control <%errors.forEach((err)=>{%>
+												<%if(err.param == 'userName'){%>
+												<%= 'error' %>
+												<%}%>
+											<%}) %>" placeholder="Username">
 											<button class="btn icon"><i class="material-icons">mail_outline</i></button>
 										</div>
 										<div class="form-group">
-											<input type="password" name="password" id="inputPassword" class="form-control" placeholder="Mật khẩu" required>
+											<input type="password" id="inputPassword" name="password" 
+											class="form-control <%errors.forEach((err)=>{%>
+												<%if(err.param == 'password'){%>
+												<%= 'error' %>
+												<%}%>
+											<%}) %>" placeholder="Password">
 											<button class="btn icon"><i class="material-icons">lock_outline</i></button>
 										</div>
-										<% if(isError) { %>
-											<div class="alert alert-danger" role="alert">
-												Vui lòng kiểm tra lại tên tài khoản hoặc mật khẩu!
-											</div>
-										<% } %>
-										<button type="submit" class="btn button" formaction="/sign-in">Đăng nhập</button>
+										<%if(errors.length > 0){ %>
+											<%errors.forEach((err)=>{ %>
+												<div class="alert alert-danger alert-dismissible fade show" role="alert">
+													<%= err.msg %>
+													<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+													  <span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+											<%})%>
+										<% } %>			
+										<button id="sign-in-button" type="submit" class="btn button" formaction="sign-in">Sign In</button>
 										<div class="callout">
-											<span>Chưa có tài khoản? <a href="sign-up.html">Tạo tài khoản mới</a></span>
+											<span>Don't have account? <a href="users/sign-up">Create Account</a></span>
 										</div>
 									</form>
 								</div>
@@ -65,9 +81,9 @@
 					<div class="container">
 						<div class="col-md-12">
 							<div class="preference">
-								<h2>Chào, bạn!</h2>
-								<p>Tạo một tài khoản mới để sử dụng swipe ngay hôm nay.</p>
-								<a href="/users/sign-up" class="btn button">Đăng ký ngay</a>
+								<h2>Hello, Friend!</h2>
+								<p>Enter your personal details and start your journey with Swipe today.</p>
+								<a href="sign-up.html" class="btn button">Sign Up</a>
 							</div>
 						</div>
 					</div>
@@ -82,6 +98,11 @@
 		<script>window.jQuery || document.write('<script src="/dist/js/vendor/jquery-slim.min.js"><\/script>')</script>
 		<script src="/dist/js/vendor/popper.min.js"></script>
 		<script src="/dist/js/bootstrap.min.js"></script>
+		<script>
+			// $("#sign-in-button").click(()=>{
+				
+			// })
+		</script>
 	</body>
 	<script type="text/javascript" >
 

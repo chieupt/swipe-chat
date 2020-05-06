@@ -22,7 +22,7 @@
 						<div class="container">
 							<div class="col-md-12">
 								<div class="content">
-									<h1>Đăng ký tài khoản</h1>
+									<h1>Create Account</h1>
 									<div class="third-party">
 										<button class="btn item bg-blue">
 											<i class="material-icons">pages</i>
@@ -34,25 +34,25 @@
 											<i class="material-icons">whatshot</i>
 										</button>
 									</div>
-									<p>hoặc sử dụng email của bạn:</p>
-									<form method="POST" action="/register">
+									<p>or use your email for registration:</p>
+									<form class="signup">
 										<div class="form-parent">
 											<div class="form-group">
-												<input type="text" name="username" id="inputName" class="form-control" placeholder="Username" required>
+												<input type="text" id="inputName" name="userName" class="form-control" placeholder="Username" required>
 												<button class="btn icon"><i class="material-icons">person_outline</i></button>
 											</div>
 											<div class="form-group">
-												<input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email Address" required>
+												<input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email Address" required>
 												<button class="btn icon"><i class="material-icons">mail_outline</i></button>
 											</div>
 										</div>
 										<div class="form-group">
-											<input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+											<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
 											<button class="btn icon"><i class="material-icons">lock_outline</i></button>
 										</div>
-										<button type="submit" class="btn button">Đăng ký</button>
+										<button type="submit" class="btn button" formaction="users/sign-up">Sign Up</button>
 										<div class="callout">
-											<span>Đã có tài khoản? <a href="sign-in.html">Đăng nhập ngay</a></span>
+											<span>Already a member? <a href="sign-in.html">Sign In</a></span>
 										</div>
 									</form>
 								</div>
@@ -67,8 +67,8 @@
 						<div class="col-md-12">
 							<div class="preference">
 								<h2>Welcome Back!</h2>
-								<p>Để giữ kết nối với bạn bè của bạn xin vui lòng đăng nhập với thông tin cá nhân của bạn.</p>
-								<a href="/users/sign-in" class="btn button">Đăng nhập ngay</a>
+								<p>To keep connected with your friends please login with your personal info.</p>
+								<a href="sign-in.html" class="btn button">Sign In</a>
 							</div>
 						</div>
 					</div>

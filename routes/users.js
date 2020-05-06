@@ -1,8 +1,11 @@
 const express = require("express")
 const user_router = express.Router()
+const {check, validationResult} = require("express-validator")
+
+const User = require("../model/User")
 
 user_router.get('/sign-in',(req, res)=>{
-    res.render("sign-in", {isError: false});
+    res.render("sign-in", { errors: [] });
 })
 
 user_router.get('/sign-up',(req, res)=>{
@@ -11,13 +14,31 @@ user_router.get('/sign-up',(req, res)=>{
     });
 })
 
-user_router.post('/sign-in',(req, res)=>{
-    console.log(req.body.username);
-    let user = {username: req.body.username, password: req.body.password};
-    if(!users.includes(user)){
-        res.render("sign-in.ejs",{isError: true})
+user_router.post('/sign-in',[
+    check('userName','Username is required').notEmpty(),
+    check('password','Password is required').notEmpty()
+],(req, res, next)=>{
+    const {userName, password} = req.body
+    //validate
+    const result = validationResult(req)
+    var errors = result.errors
+    if(!result.isEmpty()){
+        res.render('sign-in',{
+            errors: errors
+        })
     }else{
-        res.redirect("/index")
+        // User.findOne({name:userName, password: password})
+        //     .then(()=>{
+        //         res.redirec("index")
+        //     })
+        //     .catch(()=>{
+        //         res.render('sign-in',{errors:[{msg: 'Username incorect'}]})
+        //     })
+        const newUser = new User({name: userName,password: password})
+        newUser.save()
+            .then(()=>{
+                console.log(newUser);
+                res.send('OK')})
     }
 })
 
