@@ -3,13 +3,14 @@
 
 <head>
 		<meta charset="utf-8">
-		<title>Đăng ký – Swipe</title>
+		<title>Register – Swipe</title>
 		<meta name="description" content="#">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<!-- Bootstrap core CSS -->
 		<link href="/dist/css/lib/bootstrap.min.css" type="text/css" rel="stylesheet">
 		<!-- Swipe core CSS -->
 		<link href="/dist/css/swipe.min.css" type="text/css" rel="stylesheet">
+		<link href="/dist/css/style.css" type="text/css" rel="stylesheet">
 		<!-- Favicon -->
 		<link href="/dist/img/favicon.png" type="image/png" rel="icon">
 	</head>
@@ -35,22 +36,52 @@
 										</button>
 									</div>
 									<p>or use your email for registration:</p>
-									<form class="signup">
+									<form class="signup" method="POST" class="was-validated" novalidate>
 										<div class="form-parent">
 											<div class="form-group">
-												<input type="text" id="inputName" name="userName" class="form-control" placeholder="Username" required>
+												<input type="text" id="inputName" name="userName"	
+												class="form-control <%errors.forEach((err)=>{%>
+													<%if(err.param == 'userName'){%>
+													<%= 'error' %>
+													<%}%>
+												<%}) %>" placeholder="Username"
+												value="<%= typeof form.name != 'undefined' ? form.name : ''%>" >
 												<button class="btn icon"><i class="material-icons">person_outline</i></button>
 											</div>
+											
 											<div class="form-group">
-												<input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email Address" required>
+												<input type="email" id="inputEmail" name="email" 	
+												class="form-control <%errors.forEach((err)=>{%>
+													<%if(err.param == 'email'){%>
+													<%= 'error' %>
+													<%}%>
+												<%}) %>" placeholder="Email Address"
+												value="<%= typeof form.email != 'undefined' ? form.email : ''%>">
 												<button class="btn icon"><i class="material-icons">mail_outline</i></button>
 											</div>
 										</div>
+							
 										<div class="form-group">
-											<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+											<input type="password" id="inputPassword" name="password" 	
+											class="form-control <%errors.forEach((err)=>{%>
+												<%if(err.param == 'password'){%>
+												<%= 'error' %>
+												<%}%>
+											<%}) %>" placeholder="Password"
+											value="<%= typeof form.password != 'undefined' ? form.password : ''%>">
 											<button class="btn icon"><i class="material-icons">lock_outline</i></button>
 										</div>
-										<button type="submit" class="btn button" formaction="users/sign-up">Sign Up</button>
+										<%if(errors.length > 0){ %>
+											<%errors.forEach((err)=>{ %>
+												<div class="alert alert-danger alert-dismissible fade show" role="alert">
+													<%= err.msg %>
+													<button id="close" type="button" class="close" data-dismiss="alert" aria-label="Close">
+													  <span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+											<%})%>
+										<% } %>	
+										<button type="submit" class="btn button" formaction="sign-up">Sign Up</button>
 										<div class="callout">
 											<span>Already a member? <a href="sign-in.html">Sign In</a></span>
 										</div>
@@ -68,7 +99,7 @@
 							<div class="preference">
 								<h2>Welcome Back!</h2>
 								<p>To keep connected with your friends please login with your personal info.</p>
-								<a href="sign-in.html" class="btn button">Sign In</a>
+								<a href="/users/sign-in" class="btn button">Sign In</a>
 							</div>
 						</div>
 					</div>
@@ -83,10 +114,11 @@
 		<script>window.jQuery || document.write('<script src="/dist/js/vendor/jquery-slim.min.js"><\/script>')</script>
 		<script src="/dist/js/vendor/popper.min.js"></script>
 		<script src="/dist/js/bootstrap.min.js"></script>
+		<script>
+			$('#close').click(()=>{
+				// $('#inputName').removeClass('error')
+			})
+		</script>
 	</body>
 
 </html>
-
-<script>
-	
-</script>

@@ -46,6 +46,8 @@ app.set("views", __dirname + "/views");
 //route
 app.use('/', require(__dirname + '/routes/index'))
 app.use('/users', require(__dirname + '/routes/users'))
+app.use(require(__dirname + '/routes/error'))
+
 
 //db config
 const db = require(__dirname + '/config/keys').MongoURI

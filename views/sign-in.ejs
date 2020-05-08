@@ -43,7 +43,8 @@
 												<%if(err.param == 'userName'){%>
 												<%= 'error' %>
 												<%}%>
-											<%}) %>" placeholder="Username">
+											<%}) %>" placeholder="Username"
+											value="<%= typeof form.name != 'undefined' ? form.name : ''%>">
 											<button class="btn icon"><i class="material-icons">mail_outline</i></button>
 										</div>
 										<div class="form-group">
@@ -52,7 +53,8 @@
 												<%if(err.param == 'password'){%>
 												<%= 'error' %>
 												<%}%>
-											<%}) %>" placeholder="Password">
+											<%}) %>" placeholder="Password"
+											value="<%= typeof form.password != 'undefined' ? form.password : ''%>">
 											<button class="btn icon"><i class="material-icons">lock_outline</i></button>
 										</div>
 										<%if(errors.length > 0){ %>
@@ -83,7 +85,7 @@
 							<div class="preference">
 								<h2>Hello, Friend!</h2>
 								<p>Enter your personal details and start your journey with Swipe today.</p>
-								<a href="sign-up.html" class="btn button">Sign Up</a>
+								<a href="/users/sign-up" class="btn button">Sign Up</a>
 							</div>
 						</div>
 					</div>
