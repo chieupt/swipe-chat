@@ -12,10 +12,11 @@ const UserSchema = new mongoose.Schema({
     password:{
         type: String,
         required: true
-    },
-    date:{
-        type: Date,
-        default: Date.now
+    }},
+    {
+    timestamps:{
+        createdAt: 'created_at',
+        updatedAt: 'updated_at'
     }
 })
 

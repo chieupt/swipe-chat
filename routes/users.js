@@ -5,7 +5,6 @@ const validate = require("../validate/validator")
 const bcrypt = require("bcrypt")
 
 const User = require("../model/User")
-
 user_router.get('/sign-in', (req, res) => {
     res.render("sign-in", { 
         errors: [],
@@ -91,7 +90,7 @@ user_router.post('/sign-up', validate.registerValidate(), (req, res, next) => {
                 newUser.password = hash
                 newUser.save()
                     .then(() => {
-                        res.redirect("/")
+                        res.redirect("sign-in")
                     })
                     .catch()
             })
