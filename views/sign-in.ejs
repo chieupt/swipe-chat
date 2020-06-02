@@ -38,7 +38,10 @@
 									<p>or use your email account:</p>
 									<form method="POST">
 										<div class="form-group">
-											<input type="text" id="inputUserName" name="userName" 
+											<%- include('./partials/message.ejs') %>	
+										</div>
+										<div class="form-group">
+											<input type="text" id="inputUserName" name="username" 
 											class="form-control <%errors.forEach((err)=>{%>
 												<%if(err.param == 'userName'){%>
 												<%= 'error' %>
@@ -67,7 +70,7 @@
 												</div>
 											<%})%>
 										<% } %>			
-										<button id="sign-in-button" type="submit" class="btn button" formaction="sign-in">Sign In</button>
+										<button id="sign-in-button" type="submit" class="btn button" formaction="/users/sign-in">Sign In</button>
 										<div class="callout">
 											<span>Don't have account? <a href="users/sign-up">Create Account</a></span>
 										</div>

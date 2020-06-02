@@ -39,13 +39,13 @@
 									<form class="signup" method="POST" class="was-validated" novalidate>
 										<div class="form-parent">
 											<div class="form-group">
-												<input type="text" id="inputName" name="userName"	
+												<input type="text" id="inputName" name="username"	
 												class="form-control <%errors.forEach((err)=>{%>
 													<%if(err.param == 'userName'){%>
 													<%= 'error' %>
 													<%}%>
 												<%}) %>" placeholder="Username"
-												value="<%= typeof form.name != 'undefined' ? form.name : ''%>" >
+												value="<%= typeof form.username != 'undefined' ? form.username : ''%>" >
 												<button class="btn icon"><i class="material-icons">person_outline</i></button>
 											</div>
 											
