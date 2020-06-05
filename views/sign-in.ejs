@@ -3,15 +3,15 @@
 
 <head>
 		<meta charset="utf-8">
-		<title>Login – Swipe</title>
+		<title>Login – HaloChat</title>
 		<meta name="description" content="#">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<!-- Bootstrap core CSS -->
 		<link href="/dist/css/lib/bootstrap.min.css" type="text/css" rel="stylesheet">
-		<!-- Swipe core CSS -->
+		<!-- HaloChat core CSS -->
 		<link href="/dist/css/swipe.min.css" type="text/css" rel="stylesheet">
 		<link href="/dist/css/style.css" type="text/css" rel="stylesheet">
-		<!-- Favicon -->
+		<!-- HaloChat -->
 		<link href="/dist/img/favicon.png" type="image/png" rel="icon">
 	</head>
 	<body class="start">
@@ -23,7 +23,7 @@
 						<div class="container">
 							<div class="col-md-12">
 								<div class="content">
-									<h1>Sign in to Swipe</h1>
+									<h1>Sign in to HaloChat</h1>
 									<div class="third-party">
 										<button class="btn item bg-blue">
 											<i class="material-icons">pages</i>
@@ -43,7 +43,7 @@
 										<div class="form-group">
 											<input type="text" id="inputUserName" name="username" 
 											class="form-control <%errors.forEach((err)=>{%>
-												<%if(err.param == 'userName'){%>
+												<%if(err.param == 'username'){%>
 												<%= 'error' %>
 												<%}%>
 											<%}) %>" placeholder="Username"
@@ -69,7 +69,15 @@
 													</button>
 												</div>
 											<%})%>
-										<% } %>			
+										<% } %>
+										<% if(error_msg != ''){ %>	
+											<div class="alert alert-danger alert-dismissible animation-target" role="alert">
+													<%= error_msg %>
+													<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+													  <span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+										<% } %>		
 										<button id="sign-in-button" type="submit" class="btn button" formaction="/users/sign-in">Sign In</button>
 										<div class="callout">
 											<span>Don't have account? <a href="users/sign-up">Create Account</a></span>
@@ -87,7 +95,7 @@
 						<div class="col-md-12">
 							<div class="preference">
 								<h2>Hello, Friend!</h2>
-								<p>Enter your personal details and start your journey with Swipe today.</p>
+								<p>Enter your personal details and start your journey with Halo today.</p>
 								<a href="/users/sign-up" class="btn button">Sign Up</a>
 							</div>
 						</div>

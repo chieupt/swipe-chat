@@ -1,0 +1,57 @@
+
+$('.modal').on('show.bs.modal', function () {
+    $('.container').addClass('blur');
+})
+$('.modal').on('hide.bs.modal', function () {
+    $('.container').removeClass('blur');
+    $(this).find('form').trigger('reset');
+    $(".invalid").hide();
+    $("input").removeClass  ('error');
+})
+
+//logout
+hanldeLogout = () =>{
+    fetch('/users/logout')
+}
+
+handleUpdate = (userId)=>{
+    //username
+    if($("#update-username").val() == ''){
+        $("#update-username").addClass('error');
+        $(".invalid.username").show();
+        return
+    }else{
+        $("#update-username").removeClass('error');
+        $(".invalid").hide();
+    }
+
+    //password
+    if($("#old-password").val() != ''){
+        if($("#new-password").val() == ''){
+            $("#new-password").addClass('error');
+            $(".invalid.new-password").show();
+            return;
+        }else{
+            $("#new-password").removeClass('error');
+            $(".invalid.new-password").hide();
+        }
+    }else{
+        if($("#new-password").val() != ''){
+            $("#old-password").addClass('error');
+            $(".invalid.old-password").show();
+        return
+        }else{
+            $("#old-password").removeClass('error');
+            $(".invalid.old-password").hide();
+        }
+    }
+    //remove vaidate
+    $(this).find('form').trigger('reset');
+    $(".invalid").hide();
+    $("input").removeClass  ('error');
+    $.ajax({
+        url: `/api/user/{}` 
+    }).then((data)=>{
+        console.log(data);
+    })
+}

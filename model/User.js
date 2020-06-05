@@ -3,7 +3,15 @@ const mongoose = require("mongoose")
 const UserSchema = new mongoose.Schema({
     username:{
         type: String,
-        required: true
+        required: true,
+        lowercase:true,
+        match: [/^[a-zA-Z0-9]+$/, "is invalid"],
+    },
+    name:{
+        type: String,
+        default: function(){
+            return this.username
+        }
     },
     password:{
         type: String,

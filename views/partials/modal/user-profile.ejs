@@ -1,0 +1,38 @@
+<div class="modal fade" id="profile" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="requests">
+            <div class="title">
+                <h1>Information User</h1>
+                <button type="button" class="btn btn-cancel" data-dismiss="modal" aria-label="Close"><i class="material-icons">close</i></button>
+            </div>
+            <div class="content">
+                <form>
+                    <div class="avatar" style="cursor: pointer">
+                        <div class="mb-3"  data-toggle="tooltip" title="Change avatar">
+                            <img class="avatar-xl profile" src="/dist/img/avatars/avatar-male-1.jpg" alt="avatar">
+                            <div class="middle"><img width="45" src="/dist/img/icon/ar-camera.png"></div>
+                        </div>  
+                    </div>
+                    <div class="text-user mb-2">
+                       <label><%= user.name %></label> 
+                    </div>
+                    <div class="form-group" style="margin-bottom: 2% !important;">
+                        <label for="user">name</label>
+                        <input type="text" class="form-control" id="update-username" value="<%= user.name%>">
+                    </div>
+                    <label class="invalid username">Name is required</label>
+                    <div class="form-group mb-1">
+                        <label for="password">Change password</label>
+                        <input type="password" class="form-control mb-2" id="old-password" placeholder="Old password..">
+                    </div>
+                    <label class="invalid old-password">Please enter old password</label>
+                    <div class="form-group mb-1">
+                        <input type="password" class="form-control" id="new-password" placeholder="New password..">
+                    </div>
+                        <label class="invalid new-password">Please enter new password</label>
+                    <button type="button" onclick="handleUpdate()" id="btn-update-info" class="btn button w-100">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
